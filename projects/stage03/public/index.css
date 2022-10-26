@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --Gray-100: #E1E1E6;
   --Gray-300: #C4C4CC;
@@ -28,7 +29,7 @@
 }
 
 :focus {
-  outline: transparent;
+  outline: 0;
   box-shadow: none;
 }
 
@@ -36,5 +37,10 @@ html, body {
   min-width: 100vw;
   min-height: 100%;
   background: var(--Gray-800);
+  color: var(--Gray-100);
   -webkit-font-smoothing: antialiased;
+}
+
+body, input, textarea, button {
+  font: 400 1rem 'Roboto', sans-serif;
 }
