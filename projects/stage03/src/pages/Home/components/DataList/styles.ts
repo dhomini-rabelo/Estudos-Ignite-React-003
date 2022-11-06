@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+
+export const Form = {
+  search: styled.form`
+
+
+  button {
+    border: 1px solid var(--Green-300);
+  }
+  
+  button:hover {
+    border: 1px solid var(--Green-500);
+    transition: background-color 0.2s, color 0.2s, border 0.2s;
+  }
+
+  `,
+}
+
+
 export const Table = {
   main: styled.table`
     border-collapse: separate;
