@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const Div = {
   overlay: styled(Dialog.Overlay)`
@@ -50,3 +51,35 @@ export const Div = {
     }
   `,
 }
+
+/* eslint-disable */
+type ButtonTransactionProps = { isIncome: boolean }
+
+export const Button = {
+  transactionType: styled(RadioGroup.Item) <ButtonTransactionProps>`
+    border: 0;
+    background-color: var(--Gray-700);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--Gray-300);
+
+    &[data-state="checked"] {
+      color: white;
+      background-color: ${props => props.isIncome ? 'var(--Green-500)' : 'var(--Red-500)'};
+      
+      svg {
+        color: white;
+      }
+    }
+    
+    &[data-state="unchecked"]:hover {
+      background-color: var(--Gray-600);
+    }
+  `,
+}
+/* eslint-enable */

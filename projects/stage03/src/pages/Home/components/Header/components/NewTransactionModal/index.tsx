@@ -1,6 +1,7 @@
+import { ArrowCircleUp, ArrowCircleDown, X } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { Div } from './styles'
-import { X } from 'phosphor-react'
+import * as RadioGroup from '@radix-ui/react-radio-group'
+import { Button, Div } from './styles'
 
 export function NewTransactionModal() {
   return (
@@ -21,7 +22,26 @@ export function NewTransactionModal() {
           <input type="text" placeholder="Descrição" required />
           <input type="number" placeholder="Preço" required />
           <input type="text" placeholder="Categoria" required />
-
+          <RadioGroup.Root className="grid grid-cols-2">
+            <Button.transactionType
+              value="income"
+              isIncome={true}
+              type="button"
+              className="col-span-1"
+            >
+              <span>Entrada</span>
+              <ArrowCircleUp size={32} className="text-Green-300" />
+            </Button.transactionType>
+            <Button.transactionType
+              value="outcome"
+              isIncome={false}
+              type="button"
+              className="col-span-1"
+            >
+              <span>Saída</span>
+              <ArrowCircleDown size={32} className="text-Red-300" />
+            </Button.transactionType>
+          </RadioGroup.Root>
           <button type="submit">Cadastrar</button>
         </form>
       </Div.content>
