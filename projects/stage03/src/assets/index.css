@@ -36,6 +36,8 @@
 html, body {
   min-width: 100vw;
   min-height: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
   background: var(--Gray-800);
   color: var(--Gray-100);
   -webkit-font-smoothing: antialiased;
