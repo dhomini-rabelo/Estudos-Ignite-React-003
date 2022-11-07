@@ -2,17 +2,21 @@ import { ArrowCircleUp, ArrowCircleDown, X } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { Button, Div } from './styles'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { newTransactionSchema, newTransactionSchemaType } from './schemas'
 
 export function NewTransactionModal() {
   const {
+    control,
     register,
     handleSubmit,
     formState: { isSubmitting },
   } = useForm<newTransactionSchemaType>({
     resolver: zodResolver(newTransactionSchema),
+    defaultValues: {
+      type: 'income',
+    },
   })
 
   function handleRegisterNewTransaction(data: newTransactionSchemaType) {
@@ -39,7 +43,7 @@ export function NewTransactionModal() {
         >
           <input
             type="text"
-            placeholder="Descrição"
+            placeholder="Título"
             required
             {...register('title')}
           />
@@ -55,26 +59,36 @@ export function NewTransactionModal() {
             required
             {...register('category')}
           />
-          <RadioGroup.Root className="grid grid-cols-2">
-            <Button.transactionType
-              value="income"
-              isIncome={true}
-              type="button"
-              className="col-span-1"
-            >
-              <span>Entrada</span>
-              <ArrowCircleUp size={32} className="text-Green-300" />
-            </Button.transactionType>
-            <Button.transactionType
-              value="outcome"
-              isIncome={false}
-              type="button"
-              className="col-span-1"
-            >
-              <span>Saída</span>
-              <ArrowCircleDown size={32} className="text-Red-300" />
-            </Button.transactionType>
-          </RadioGroup.Root>
+
+          <Controller
+            control={control}
+            name="type"
+            render={({ field }) => (
+              <RadioGroup.Root
+                className="grid grid-cols-2"
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <Button.transactionType
+                  value="income"
+                  type="button"
+                  className="col-span-1"
+                >
+                  <span>Entrada</span>
+                  <ArrowCircleUp size={32} className="text-Green-300" />
+                </Button.transactionType>
+                <Button.transactionType
+                  value="outcome"
+                  type="button"
+                  className="col-span-1"
+                >
+                  <span>Saída</span>
+                  <ArrowCircleDown size={32} className="text-Red-300" />
+                </Button.transactionType>
+              </RadioGroup.Root>
+            )}
+          />
+
           <button type="submit" disabled={isSubmitting}>
             Cadastrar
           </button>

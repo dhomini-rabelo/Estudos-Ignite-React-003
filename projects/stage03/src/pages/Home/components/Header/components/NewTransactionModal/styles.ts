@@ -58,10 +58,9 @@ export const Div = {
 }
 
 /* eslint-disable */
-type ButtonTransactionProps = { isIncome: boolean }
 
 export const Button = {
-  transactionType: styled(RadioGroup.Item) <ButtonTransactionProps>`
+  transactionType: styled(RadioGroup.Item)`
     border: 0;
     background-color: var(--Gray-700);
     padding: 1rem;
@@ -72,16 +71,25 @@ export const Button = {
     border-radius: 6px;
     cursor: pointer;
     color: var(--Gray-300);
-
-    &[data-state="checked"] {
+    
+    &[data-state="checked"][value="income"] {
       color: white;
-      background-color: ${props => props.isIncome ? 'var(--Green-500)' : 'var(--Red-500)'};
+      background-color: var(--Green-500);
       
       svg {
         color: white;
       }
     }
     
+    &[data-state="checked"][value="outcome"] {
+      color: white;
+      background-color: var(--Red-500);
+      
+      svg {
+        color: white;
+      }
+    }
+
     &[data-state="unchecked"]:hover {
       background-color: var(--Gray-600);
     }
