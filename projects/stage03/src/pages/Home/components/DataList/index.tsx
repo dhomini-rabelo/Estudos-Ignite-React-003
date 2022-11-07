@@ -5,7 +5,10 @@ import { dateFormatter, priceFormatter } from '../../../../code/utils/formatter'
 import { Form, Table } from './styles'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { searchTransactionsForm, searchTransactionsFormType } from './schemas'
+import {
+  searchTransactionsSchema,
+  searchTransactionsSchemaType,
+} from './schemas'
 
 export function DataList() {
   const { transactions } = useContext(TransactionsContext)
@@ -13,11 +16,11 @@ export function DataList() {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<searchTransactionsFormType>({
-    resolver: zodResolver(searchTransactionsForm),
+  } = useForm<searchTransactionsSchemaType>({
+    resolver: zodResolver(searchTransactionsSchema),
   })
 
-  function handleSearchTransactions(data: searchTransactionsFormType) {
+  function handleSearchTransactions(data: searchTransactionsSchemaType) {
     console.log(data)
   }
 

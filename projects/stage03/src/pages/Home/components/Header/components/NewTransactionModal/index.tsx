@@ -2,8 +2,23 @@ import { ArrowCircleUp, ArrowCircleDown, X } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { Button, Div } from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { newTransactionSchema, newTransactionSchemaType } from './schemas'
 
 export function NewTransactionModal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<newTransactionSchemaType>({
+    resolver: zodResolver(newTransactionSchema),
+  })
+
+  function handleRegisterNewTransaction(data: newTransactionSchemaType) {
+    console.log(data)
+  }
+
   return (
     <Dialog.Portal>
       <Div.overlay />
@@ -18,10 +33,28 @@ export function NewTransactionModal() {
           </button>
         </Dialog.Close>
 
-        <form className="mt-8 flex flex-col gap-4">
-          <input type="text" placeholder="Descrição" required />
-          <input type="number" placeholder="Preço" required />
-          <input type="text" placeholder="Categoria" required />
+        <form
+          className="mt-8 flex flex-col gap-4"
+          onSubmit={handleSubmit(handleRegisterNewTransaction)}
+        >
+          <input
+            type="text"
+            placeholder="Descrição"
+            required
+            {...register('title')}
+          />
+          <input
+            type="number"
+            placeholder="Preço"
+            required
+            {...register('price', { valueAsNumber: true })}
+          />
+          <input
+            type="text"
+            placeholder="Categoria"
+            required
+            {...register('category')}
+          />
           <RadioGroup.Root className="grid grid-cols-2">
             <Button.transactionType
               value="income"
@@ -42,7 +75,9 @@ export function NewTransactionModal() {
               <ArrowCircleDown size={32} className="text-Red-300" />
             </Button.transactionType>
           </RadioGroup.Root>
-          <button type="submit">Cadastrar</button>
+          <button type="submit" disabled={isSubmitting}>
+            Cadastrar
+          </button>
         </form>
       </Div.content>
     </Dialog.Portal>

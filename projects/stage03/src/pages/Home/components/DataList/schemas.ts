@@ -1,7 +1,9 @@
 import * as z from 'zod'
 
-export const searchTransactionsForm = z.object({
+export const searchTransactionsSchema = z.object({
   query: z.string(),
 })
 
-export type searchTransactionsFormType = z.infer<typeof searchTransactionsForm>
+export type searchTransactionsSchemaType = z.infer<
+  typeof searchTransactionsSchema
+>
