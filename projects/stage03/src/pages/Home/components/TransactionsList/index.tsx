@@ -10,7 +10,7 @@ import {
   searchTransactionsSchemaType,
 } from './schemas'
 
-export function DataList() {
+export function TransactionsList() {
   const { transactions, searchTransactions } = useContext(TransactionsContext)
   const {
     register,
