@@ -1,6 +1,7 @@
 import { MagnifyingGlass } from 'phosphor-react'
 import { useContext } from 'react'
 import { TransactionsContext } from '../../../../code/contexts/Transactions'
+import { dateFormatter, priceFormatter } from '../../../../code/utils/formatter'
 import { Form, Table } from './styles'
 
 export function DataList() {
@@ -26,9 +27,11 @@ export function DataList() {
           {transactions.map((transaction) => (
             <tr key={transaction.id}>
               <td>{transaction.title}</td>
-              <td className={transaction.type}>R$ {transaction.price}</td>
+              <td className={transaction.type}>
+                {priceFormatter.format(transaction.price)}
+              </td>
               <td>{transaction.category}</td>
-              <td>{transaction.createdAt}</td>
+              <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
             </tr>
           ))}
         </tbody>
