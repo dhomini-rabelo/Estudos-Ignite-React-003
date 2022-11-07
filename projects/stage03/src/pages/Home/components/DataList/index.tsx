@@ -3,20 +3,41 @@ import { useContext } from 'react'
 import { TransactionsContext } from '../../../../code/contexts/Transactions'
 import { dateFormatter, priceFormatter } from '../../../../code/utils/formatter'
 import { Form, Table } from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { searchTransactionsForm, searchTransactionsFormType } from './schemas'
 
 export function DataList() {
   const { transactions } = useContext(TransactionsContext)
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<searchTransactionsFormType>({
+    resolver: zodResolver(searchTransactionsForm),
+  })
+
+  function handleSearchTransactions(data: searchTransactionsFormType) {
+    console.log(data)
+  }
+
   return (
     <main className="w-full mx-auto p-[0_1.5rem] mt-16">
-      <Form.search className="flex gap-4">
+      <Form.search
+        className="flex gap-4"
+        onSubmit={handleSubmit(handleSearchTransactions)}
+      >
         <input
           type="text"
           className="grow rounded-md bg-Gray-900 text-Gray-300 p-4 placeholder:text-Gray-500"
           placeholder="Busque por transações"
+          required
+          {...register('query')}
         />
         <button
           className="flex items-center gap-3 p-4 text-Green-300 font-semibold rounded-md hover:bg-Green-500 hover:text-white"
           type="submit"
+          disabled={isSubmitting}
         >
           <MagnifyingGlass size={20} />
           <span>Buscar</span>
