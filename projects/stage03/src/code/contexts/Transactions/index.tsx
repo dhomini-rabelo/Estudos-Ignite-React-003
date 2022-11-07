@@ -8,15 +8,25 @@ export const TransactionsContext = createContext<TransactionsContextType>(
 
 export function TransactionsProvider({ children }: { children: ReactNode }) {
   const [transactions, setTransactions] = useState<TransactionSchema[]>([])
+
+  async function searchTransactions(query?: string) {
+    const url = new URL('http://localhost:3000/transactions')
+
+    if (query) {
+      url.searchParams.append('q', query)
+    }
+
+    const request = await fetch(url)
+    const data: TransactionSchema[] = await request.json()
+    setTransactions(data)
+  }
+
   useEffect(() => {
-    fetch('http://localhost:3000/transactions').then(async (response) => {
-      const data: TransactionSchema[] = await response.json()
-      setTransactions(data)
-    })
+    searchTransactions()
   }, [])
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, searchTransactions }}>
       {children}
     </TransactionsContext.Provider>
   )

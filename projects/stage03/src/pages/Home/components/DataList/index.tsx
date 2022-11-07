@@ -11,7 +11,7 @@ import {
 } from './schemas'
 
 export function DataList() {
-  const { transactions } = useContext(TransactionsContext)
+  const { transactions, searchTransactions } = useContext(TransactionsContext)
   const {
     register,
     handleSubmit,
@@ -21,7 +21,7 @@ export function DataList() {
   })
 
   function handleSearchTransactions(data: searchTransactionsSchemaType) {
-    console.log(data)
+    searchTransactions(data.query)
   }
 
   return (
@@ -34,7 +34,6 @@ export function DataList() {
           type="text"
           className="grow rounded-md bg-Gray-900 text-Gray-300 p-4 placeholder:text-Gray-500"
           placeholder="Busque por transações"
-          required
           {...register('query')}
         />
         <button
