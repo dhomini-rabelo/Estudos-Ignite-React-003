@@ -1,12 +1,10 @@
 import { MagnifyingGlass } from 'phosphor-react'
-import { TransactionSchema } from '../../../../code/schemas/transactions'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../../../code/contexts/Transactions'
 import { Form, Table } from './styles'
 
-export function DataList({
-  transactions,
-}: {
-  transactions: TransactionSchema[]
-}) {
+export function DataList() {
+  const { transactions } = useContext(TransactionsContext)
   return (
     <main className="w-full mx-auto p-[0_1.5rem] mt-16">
       <Form.search className="flex gap-4">
