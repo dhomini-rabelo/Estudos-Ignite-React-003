@@ -1,9 +1,10 @@
-import { Home } from "../pages/Home";
+import { TransactionsProvider } from '../code/contexts/Transactions'
+import { Home } from '../pages/Home'
 
 export function App() {
-
   return (
-    <Home />
+    <TransactionsProvider>
+      <Home />
+    </TransactionsProvider>
   )
 }
-

@@ -1,17 +1,11 @@
-import { useEffect, useState } from 'react'
-import { TransactionSchema } from '../../code/schemas/transactions'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../code/contexts/Transactions'
 import { DataList } from './components/DataList'
 import { Header } from './components/Header'
 import { SummaryContainer } from './components/SummaryContainer'
 
 export function Home() {
-  const [transactions, setTransactions] = useState<TransactionSchema[]>([])
-  useEffect(() => {
-    fetch('http://localhost:3000/transactions').then(async (response) => {
-      const data: TransactionSchema[] = await response.json()
-      setTransactions(data)
-    })
-  }, [])
+  const { transactions } = useContext(TransactionsContext)
 
   return (
     <>
