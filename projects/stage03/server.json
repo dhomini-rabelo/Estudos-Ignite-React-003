@@ -23,6 +23,14 @@
       "category": "Casa",
       "createdAt": "2022-11-07T23:50:47.903Z",
       "id": 3
+    },
+    {
+      "title": "Loteria",
+      "type": "income",
+      "price": 10,
+      "category": "Sorte",
+      "createdAt": "2022-11-08T00:03:20.403Z",
+      "id": 4
     }
   ]
 }

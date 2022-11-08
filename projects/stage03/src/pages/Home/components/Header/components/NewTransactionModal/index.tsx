@@ -24,7 +24,7 @@ export function NewTransactionModal() {
   })
 
   async function handleRegisterNewTransaction(data: newTransactionSchemaType) {
-    createTransaction(data)
+    await createTransaction(data)
     reset()
   }
 

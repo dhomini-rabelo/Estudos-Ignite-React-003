@@ -28,7 +28,7 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
       ...data,
       createdAt: new Date(),
     })
-    setTransactions((prev) => [...prev, response.data])
+    setTransactions((prev) => [response.data, ...prev])
   }
 
   useEffect(() => {
