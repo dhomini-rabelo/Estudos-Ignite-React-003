@@ -5,12 +5,16 @@ import { Button, Div } from './styles'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { newTransactionSchema, newTransactionSchemaType } from './schemas'
+import { useContext } from 'react'
+import { TransactionsContext } from '../../../../../../code/contexts/Transactions'
 
 export function NewTransactionModal() {
+  const { createTransaction } = useContext(TransactionsContext)
   const {
     control,
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = useForm<newTransactionSchemaType>({
     resolver: zodResolver(newTransactionSchema),
@@ -19,8 +23,9 @@ export function NewTransactionModal() {
     },
   })
 
-  function handleRegisterNewTransaction(data: newTransactionSchemaType) {
-    console.log(data)
+  async function handleRegisterNewTransaction(data: newTransactionSchemaType) {
+    createTransaction(data)
+    reset()
   }
 
   return (
