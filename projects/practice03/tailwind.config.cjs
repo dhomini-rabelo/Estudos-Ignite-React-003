@@ -7,7 +7,6 @@ module.exports = {
     extend: {
       colors: {
         Blue: {
-          100: '#AFC2D4',
           300: '#3294F8',
           500: '#7B96B2',
           600: '#3A536B',
@@ -18,6 +17,7 @@ module.exports = {
         Gray: {
           100: '#E7EDF4',
           200: '#C4D4E3',
+          300: '#AFC2D4',
           600: '#112131',
           700: '#0B1B2B',
           800: '#071422',

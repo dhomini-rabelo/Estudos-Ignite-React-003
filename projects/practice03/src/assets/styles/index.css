@@ -5,7 +5,6 @@
 
 
 :root {
-    --Blue-100: #AFC2D4;
     --Blue-300: #3294F8;
     --Blue-500: #7B96B2;
     --Blue-600: #3A536B;
@@ -14,6 +13,7 @@
     --Blue-900: #1C2F41;
     --Gray-100: #E7EDF4;
     --Gray-200: #C4D4E3;
+    --Gray-300: #AFC2D4;
     --Gray-600: #112131;
     --Gray-700: #0B1B2B;
     --Gray-800: #071422;
@@ -36,7 +36,7 @@ html, body {
   min-width: 100vw;
   min-height: 100%;
   background: var(--Gray-800);
-  color: var(--Gray-100);
+  color: var(--Gray-300);
   -webkit-font-smoothing: antialiased;
 }
 
