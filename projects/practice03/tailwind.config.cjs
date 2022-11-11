@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx,css}",
   ],
   theme: {
     extend: {
@@ -22,8 +22,9 @@ module.exports = {
           700: '#0B1B2B',
           800: '#071422',
           900: '#040F1A',
-        }
-      }
+        },
+      },
+    },
   },
   plugins: [],
 }
