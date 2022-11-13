@@ -42,10 +42,18 @@ html, body {
 
 #root {
   margin: 0 auto;
-  max-width: 1120px;
+  max-width: 864px;
   width: 100%;
 }
 
 body, input, textarea, button {
   font: 400 1rem 'Roboto', sans-serif;
+}
+
+.lh-130 {
+  line-height: 130%;
+}
+
+.lh-160 {
+  line-height: 160%;
 }
