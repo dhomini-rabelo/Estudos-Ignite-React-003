@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
 export const Div = {
-  container: styled.div``,
+  container: styled.div`
+    border-radius: 10px;
+    border: 2px solid transparent;
+
+    &:hover {
+      border: 2px solid var(--Blue-600);
+    }
+  `,
 }

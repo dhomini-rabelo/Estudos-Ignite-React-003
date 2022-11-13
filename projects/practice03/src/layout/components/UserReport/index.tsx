@@ -11,11 +11,11 @@ export function UserReport() {
         />
       </div>
       <div className="profile-content flex flex-col pt-2 grow">
-        <div className="flex justify-between text-Blue-300">
+        <div className="flex justify-between text-Blue-300 items-start">
           <h1 className="text-Gray-100 text-2xl font-bold lh-130">
             Cameron Williamson
           </h1>
-          <a href="#">
+          <a className="github-link" href="#">
             GITHUB
             <i className="fa-solid fa-arrow-up-right-from-square ml-2"></i>
           </a>

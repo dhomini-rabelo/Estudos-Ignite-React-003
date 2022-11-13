@@ -2,7 +2,7 @@ import { Div } from './styles'
 
 export function PostBox() {
   return (
-    <Div.container className="p-8">
+    <Div.container className="p-8 cursor-pointer">
       <div className="flex items-center-justify-between">
         <strong className="text-xl text-Gray-100">
           JavaScript data types and data structures
