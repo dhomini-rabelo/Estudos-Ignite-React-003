@@ -7,7 +7,7 @@ export const MyUserData = {
   company: 'Inspecto Agri',
   blog: 'https://www.linkedin.com/in/dhomini-rabelo',
   location: 'São Luís, MA',
-  bio: 'Desenvolvedor web\n dhominirabelo@gmail.com\r\n',
+  bio: 'Desenvolvedor web\r\n dhominirabelo@gmail.com\r\n',
   public_repos: 27,
   followers: 4,
 }

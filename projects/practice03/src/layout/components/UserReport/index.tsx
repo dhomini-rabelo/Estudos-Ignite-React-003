@@ -16,13 +16,29 @@ export function UserReport({ user }: { user: UserDataType }) {
           <h1 className="text-Gray-100 text-2xl font-bold lh-130">
             {user.name}
           </h1>
-          <a className="github-link" href={user.html_url}>
+          <a
+            className="github-link"
+            target="_blank"
+            rel="noreferrer"
+            href={user.html_url}
+          >
             GITHUB
             <i className="fa-solid fa-arrow-up-right-from-square ml-2"></i>
           </a>
         </div>
-        <p className="lh-160 mt-1 text-xs">{user.bio}</p>
-        <div className="mt-6 flex items-center gap-x-6 gap-y-2 lh-160 flex-wrap">
+        <p className="text-xs mt-1">
+          {user.bio.split('\r\n').map((partialText, index, splitArray) =>
+            index + 1 !== splitArray.length ? (
+              <span key={index}>
+                {partialText}
+                <br />
+              </span>
+            ) : (
+              <span key={index}>{partialText}</span>
+            ),
+          )}
+        </p>
+        <div className="mt-4 flex items-center gap-x-6 gap-y-2 lh-160 flex-wrap">
           <div className="icon-text flex gap-x-2 items-center">
             <i className="fa-brands fa-github"></i>
             <span>{user.login}</span>
