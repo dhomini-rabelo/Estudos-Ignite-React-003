@@ -1,3 +1,4 @@
+import { MyUserData } from '../../code/data'
 import { PostBox } from '../../layout/components/PostBox'
 import { UserReport } from '../../layout/components/UserReport'
 import { Div } from './styles'
@@ -5,7 +6,7 @@ import { Div } from './styles'
 export function Home() {
   return (
     <main>
-      <UserReport />
+      <UserReport user={MyUserData} />
       <Div.inputContainer className="input-container">
         <div className="flex items-center justify-between mt-10 lh-160">
           <strong className="text-lg text-Gray-200">Publicações</strong>
