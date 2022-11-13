@@ -11,9 +11,7 @@ export function MainTemplate() {
           className="w-36 h-24 m-auto d-block mt-16"
         />
       </header>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </Div.container>
   )
 }
