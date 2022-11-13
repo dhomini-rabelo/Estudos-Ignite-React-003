@@ -1,3 +1,4 @@
+import { PostBox } from '../../layout/components/PostBox'
 import { UserReport } from '../../layout/components/UserReport'
 import { Div } from './styles'
 
@@ -16,6 +17,14 @@ export function Home() {
           placeholder="Buscar conteúdo"
         />
       </Div.inputContainer>
+      <div className="post-boxes mt-12 grid grid-cols-2 gap-x-8">
+        <div className="col-span-1">
+          <PostBox />
+        </div>
+        <div className="col-span-1">
+          <PostBox />
+        </div>
+      </div>
     </main>
   )
 }
