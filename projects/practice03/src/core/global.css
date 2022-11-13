@@ -33,7 +33,7 @@
 }
 
 html, body {
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100%;
   background: var(--Gray-800);
   color: var(--Gray-300);
@@ -47,7 +47,7 @@ html, body {
 }
 
 body, input, textarea, button {
-  font: 400 1rem 'Roboto', sans-serif;
+  font: 400 1rem 'Nunito', Arial, sans-serif;
 }
 
 .lh-130 {
