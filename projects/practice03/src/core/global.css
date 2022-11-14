@@ -57,3 +57,9 @@ body, input, textarea, button {
 .lh-160 {
   line-height: 160%;
 }
+
+.etc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

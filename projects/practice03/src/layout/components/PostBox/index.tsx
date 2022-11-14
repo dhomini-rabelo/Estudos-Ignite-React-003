@@ -10,7 +10,7 @@ export function PostBox({ repository }: { repository: RepositoryType }) {
           {new Date(repository.created_at).toLocaleDateString()}
         </span>
       </div>
-      <p className="lh-160 mt-5">{repository.description}</p>
+      <p className="lh-160 mt-5">{repository.description || '...'}</p>
     </Div.container>
   )
 }
