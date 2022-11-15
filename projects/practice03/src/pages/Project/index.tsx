@@ -12,7 +12,7 @@ import ReactDOMServer from 'react-dom/server'
 export function Project() {
   const { username, projectName, branch } = useParams()
   const { currentUser, repos } = useContext(ProjectsContext)
-  const { isLoading, data, wasSuccess } = useLoading(
+  const { isLoading, data, wasSuccess } = useLoading<string>(
     `${username}/${projectName}/${branch}/README.md`,
     contentGithubClient,
   )
@@ -41,7 +41,7 @@ export function Project() {
     )
   }
 
-  const element = ReactDOMServer.renderToStaticMarkup(
+  const markdownAndHtmlCodeAsString = ReactDOMServer.renderToStaticMarkup(
     <ReactMarkdown>{data || ''}</ReactMarkdown>,
   )
     .replaceAll('&lt;', '<')
@@ -95,7 +95,7 @@ export function Project() {
       <section>
         {wasSuccess ? (
           <Div.content>
-            <Markup content={element} />
+            <Markup content={markdownAndHtmlCodeAsString} />
           </Div.content>
         ) : (
           <span className="block text-center col-span-2">

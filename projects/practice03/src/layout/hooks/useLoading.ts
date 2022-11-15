@@ -1,14 +1,14 @@
 import { AxiosInstance } from 'axios'
 import { useEffect, useState } from 'react'
 
-interface hookResponse {
+interface hookResponse<DataType> {
   isLoading: boolean
-  data: any
+  data: DataType | null
   wasSuccess: boolean | null
 }
 
-export function useLoading(url: string, client: AxiosInstance) {
-  const [feedback, setFeedback] = useState<hookResponse>({
+export function useLoading<DataType>(url: string, client: AxiosInstance) {
+  const [feedback, setFeedback] = useState<hookResponse<DataType>>({
     isLoading: true,
     data: null,
     wasSuccess: null,
