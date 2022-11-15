@@ -7,7 +7,10 @@ interface hookResponse<DataType> {
   wasSuccess: boolean | null
 }
 
-export function useLoading<DataType>(url: string, client: AxiosInstance) {
+export function useExternalGetData<DataType>(
+  url: string,
+  client: AxiosInstance,
+) {
   const [feedback, setFeedback] = useState<hookResponse<DataType>>({
     isLoading: true,
     data: null,
