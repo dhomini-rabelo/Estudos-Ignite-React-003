@@ -4,6 +4,10 @@ export const Div = {
   header: styled.div`
     margin-top: -7.2rem;
 
+    h1 {
+      font-size: 1.5rem;
+    }
+
     a {
       border-bottom: 1px solid transparent;
     }
