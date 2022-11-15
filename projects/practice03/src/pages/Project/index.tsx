@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { contentGithubClient } from '../../core/settings'
 import { Loading } from '../../layout/components/Loading'
-import { useExternalGetData } from '../../layout/hooks/useExternalGetData'
+import { useExternalData } from '../../layout/hooks/useExternalData'
 import { Markup } from 'interweave'
 import { Div } from './styles'
 import { useContext } from 'react'
@@ -12,7 +12,7 @@ import ReactDOMServer from 'react-dom/server'
 export function Project() {
   const { username, projectName, branch } = useParams()
   const { currentUser, repos } = useContext(ProjectsContext)
-  const { isLoading, data, wasSuccess } = useExternalGetData<string>(
+  const { isLoading, data, wasSuccess } = useExternalData<string>(
     `${username}/${projectName}/${branch}/README.md`,
     contentGithubClient,
   )
