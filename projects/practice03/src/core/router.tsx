@@ -9,7 +9,10 @@ export function RoutesController() {
       <Routes>
         <Route element={<MainTemplate />}>
           <Route path="/" element={<Home />} />
-          <Route path="/projeto" element={<Project />} />
+          <Route
+            path="/projeto-github/:username/:projectName/:branch"
+            element={<Project />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

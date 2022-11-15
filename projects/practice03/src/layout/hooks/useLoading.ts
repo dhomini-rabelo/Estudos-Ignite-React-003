@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface hookResponse {
   isLoading: boolean
@@ -14,22 +14,24 @@ export function useLoading(url: string, client: AxiosInstance) {
     wasSuccess: null,
   })
 
-  client
-    .get(url)
-    .then((response) => {
-      setFeedback({
-        isLoading: false,
-        data: response.data,
-        wasSuccess: true,
+  useEffect(() => {
+    client
+      .get(url)
+      .then((response) => {
+        setFeedback({
+          isLoading: false,
+          data: response.data,
+          wasSuccess: true,
+        })
       })
-    })
-    .catch((error) => {
-      setFeedback({
-        isLoading: false,
-        data: error.response.data,
-        wasSuccess: false,
+      .catch((error) => {
+        setFeedback({
+          isLoading: false,
+          data: error.response.data,
+          wasSuccess: false,
+        })
       })
-    })
+  }, [client, url])
 
   return feedback
 }

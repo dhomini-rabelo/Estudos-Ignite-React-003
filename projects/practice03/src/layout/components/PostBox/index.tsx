@@ -4,7 +4,10 @@ import { Div } from './styles'
 
 export function PostBox({ repository }: { repository: RepositoryType }) {
   return (
-    <Link to="projeto" className="block">
+    <Link
+      to={`/projeto-github/dhomini-rabelo/${repository.name}/${repository.default_branch}`}
+      className="block"
+    >
       <Div.container className="p-8 cursor-pointer">
         <div className="flex items-center justify-between">
           <strong className="text-xl text-Gray-100">{repository.name}</strong>
