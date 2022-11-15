@@ -5,7 +5,7 @@ import { Div } from './styles'
 export function PostBox({ repository }: { repository: RepositoryType }) {
   return (
     <Link
-      to={`/projeto-github/dhomini-rabelo/${repository.name}/${repository.default_branch}`}
+      to={`/projeto-github/${repository.full_name}/${repository.default_branch}`}
       className="block"
     >
       <Div.container className="p-8 cursor-pointer">
