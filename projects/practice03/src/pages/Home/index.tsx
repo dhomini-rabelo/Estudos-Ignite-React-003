@@ -1,10 +1,13 @@
 import { MyUserData, myUserRepos } from '../../code/data'
+import { Loading } from '../../layout/components/Loading'
 import { PostBox } from '../../layout/components/PostBox'
 import { UserReport } from '../../layout/components/UserReport'
 import { Div } from './styles'
 
 export function Home() {
-  return (
+  const isLoading = false
+
+  return !isLoading ? (
     <main>
       <UserReport user={MyUserData} />
       <Div.inputContainer className="input-container">
@@ -28,5 +31,7 @@ export function Home() {
         ))}
       </div>
     </main>
+  ) : (
+    <Loading />
   )
 }
