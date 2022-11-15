@@ -4,16 +4,56 @@ import { Loading } from '../../layout/components/Loading'
 import { useLoading } from '../../layout/hooks/useLoading'
 import { Markup } from 'interweave'
 import { Div } from './styles'
+import { useContext } from 'react'
+import { ProjectsContext } from '../../code/context/projects'
+import ReactMarkdown from 'react-markdown'
+import ReactDOMServer from 'react-dom/server'
 
 export function Project() {
   const { username, projectName, branch } = useParams()
+  const { currentUser, repos } = useContext(ProjectsContext)
   const { isLoading, data, wasSuccess } = useLoading(
     `${username}/${projectName}/${branch}/README.md`,
     contentGithubClient,
   )
+  const projectRepository = repos.find(
+    (repo) => repo.full_name === `${username}/${projectName}`,
+  )
+
+  if (username !== currentUser || !projectRepository) {
+    return (
+      <main className="py-8">
+        <Div.header className="flex flex-col">
+          <nav className="flex items-center justify-between text-Blue-300 w-full">
+            <Link to="/" className="lh-160">
+              <i className="fa-solid fa-chevron-left mr-2"></i>
+              <span>VOLTAR</span>
+            </Link>
+          </nav>
+        </Div.header>
+        <section>
+          <span className="block text-center col-span-2">
+            <i className="fa-solid fa-x mr-2"></i>
+            Usuário inválido
+          </span>
+        </section>
+      </main>
+    )
+  }
+
+  const element = ReactDOMServer.renderToStaticMarkup(
+    <ReactMarkdown>{data || ''}</ReactMarkdown>,
+  )
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll(
+      'src=".',
+      `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
+    )
 
   return !isLoading ? (
-    <main className="py-8">
+    <main className="pt-8 pb-24">
       <Div.header className="flex flex-col">
         <nav className="flex items-center justify-between text-Blue-300 w-full">
           <Link to="/" className="lh-160">
@@ -38,12 +78,16 @@ export function Project() {
               <span>{username}</span>
             </div>
             <div className="icon-text flex gap-x-2 items-center">
-              <i className="fa-brands fa-python"></i>
-              <span>Python</span>
+              <i
+                className={`devicon-${projectRepository.language.toLowerCase()}-plain text-Blue-500`}
+              ></i>
+              <span>{projectRepository.language}</span>
             </div>
             <div className="icon-text flex gap-x-2 items-center">
               <i className="fa-solid fa-calendar"></i>
-              <span>Há 1 dia</span>
+              <span>
+                {new Date(projectRepository.created_at).toLocaleDateString()}
+              </span>
             </div>
           </div>
         </div>
@@ -51,12 +95,7 @@ export function Project() {
       <section>
         {wasSuccess ? (
           <Div.content>
-            <Markup
-              content={data.replaceAll(
-                'src=".',
-                `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
-              )}
-            />
+            <Markup content={element} />
           </Div.content>
         ) : (
           <span className="block text-center col-span-2">

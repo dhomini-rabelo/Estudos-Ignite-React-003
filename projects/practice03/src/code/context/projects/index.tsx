@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useReducer } from 'react'
+import { myUserRepos } from '../../data'
 import { ProjectsReducer } from './reducer'
 import { ProjectsContextType } from './types'
 
@@ -10,7 +11,7 @@ export function ProjectsProvider({ children }: { children: ReactNode }) {
   const [projects, projectsDispatch] = useReducer(ProjectsReducer, {
     defaultUser: 'dhomini-rabelo',
     currentUser: 'dhomini-rabelo',
-    repos: [],
+    repos: myUserRepos,
   })
 
   return (
