@@ -1,23 +1,35 @@
 import { AxiosInstance } from 'axios'
 import { useState } from 'react'
 
+interface hookResponse {
+  isLoading: boolean
+  data: any
+  wasSuccess: boolean | null
+}
+
 export function useLoading(url: string, client: AxiosInstance) {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [data, setData] = useState<any>(null)
+  const [feedback, setFeedback] = useState<hookResponse>({
+    isLoading: true,
+    data: null,
+    wasSuccess: null,
+  })
 
   client
     .get(url)
     .then((response) => {
-      setIsLoading(false)
-      setData(response.data)
+      setFeedback({
+        isLoading: false,
+        data: response.data,
+        wasSuccess: true,
+      })
     })
     .catch((error) => {
-      setIsLoading(false)
-      setData(error.response.data)
+      setFeedback({
+        isLoading: false,
+        data: error.response.data,
+        wasSuccess: false,
+      })
     })
 
-  return {
-    isLoading,
-    data,
-  }
+  return feedback
 }
