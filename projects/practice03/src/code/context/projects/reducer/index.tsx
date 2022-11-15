@@ -1,9 +1,16 @@
-import { ProjectsContextType } from '../types'
+import { UserSettingsType } from '../types'
+import { ProjectsActions } from './actions'
 import { ProjectsReducerAction } from './types'
 
 export function ProjectsReducer(
-  state: ProjectsContextType,
+  state: UserSettingsType,
   action: ProjectsReducerAction,
-): ProjectsContextType {
-  return { ...state }
+): UserSettingsType {
+  switch (action.type) {
+    case ProjectsActions.SET_REPOS:
+      return {
+        ...state,
+        repos: action.payload,
+      }
+  }
 }
