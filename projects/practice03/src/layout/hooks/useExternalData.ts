@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface hookResponse<DataType> {
   isLoading: boolean
@@ -8,6 +8,7 @@ interface hookResponse<DataType> {
 }
 
 export function useExternalData<DataType>(url: string, client: AxiosInstance) {
+  const onRequestingRef = useRef(false)
   const [feedback, setFeedback] = useState<hookResponse<DataType>>({
     isLoading: true,
     data: null,
@@ -15,23 +16,28 @@ export function useExternalData<DataType>(url: string, client: AxiosInstance) {
   })
 
   useEffect(() => {
-    client
-      .get(url)
-      .then((response) => {
-        setFeedback({
-          isLoading: false,
-          data: response.data,
-          wasSuccess: true,
+    if (!onRequestingRef.current) {
+      onRequestingRef.current = true
+      client
+        .get(url)
+        .then((response) => {
+          setFeedback({
+            isLoading: false,
+            data: response.data,
+            wasSuccess: true,
+          })
+          onRequestingRef.current = false
         })
-      })
-      .catch((error) => {
-        setFeedback({
-          isLoading: false,
-          data: error.response.data,
-          wasSuccess: false,
+        .catch((error) => {
+          setFeedback({
+            isLoading: false,
+            data: error.response.data,
+            wasSuccess: false,
+          })
+          onRequestingRef.current = false
         })
-      })
-  }, [client, url])
+    }
+  }, [client, url, onRequestingRef])
 
   return feedback
 }

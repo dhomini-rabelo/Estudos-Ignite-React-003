@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useCallback, useReducer } from 'react'
 import { RepositoryType } from '../../types/repository'
 import { UserDataType } from '../../types/user'
 import { ProjectsReducer } from './reducer'
@@ -28,13 +28,13 @@ export function ProjectsProvider({ children }: { children: ReactNode }) {
     repos: [],
   })
 
-  function setUserData(userData: UserDataType) {
+  const setUserData = useCallback((userData: UserDataType) => {
     projectsDispatch(ProjectsConsumer.setUser(userData))
-  }
+  }, [])
 
-  function setRepositories(repositories: RepositoryType[]) {
+  const setRepositories = useCallback((repositories: RepositoryType[]) => {
     projectsDispatch(ProjectsConsumer.setRepos(repositories))
-  }
+  }, [])
 
   return (
     <ProjectsContext.Provider
