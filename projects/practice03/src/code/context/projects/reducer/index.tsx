@@ -7,6 +7,11 @@ export function ProjectsReducer(
   action: ProjectsReducerAction,
 ): UserSettingsType {
   switch (action.type) {
+    case ProjectsActions.SET_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      }
     case ProjectsActions.SET_REPOS:
       return {
         ...state,
