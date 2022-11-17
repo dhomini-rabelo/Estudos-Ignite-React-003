@@ -3,7 +3,7 @@ import { UserDataType } from '../../types/user'
 
 export interface UserSettingsType {
   defaultUser: string
-  currentUser: UserDataType
+  currentUser: UserDataType | null
   repos: RepositoryType[]
 }
 

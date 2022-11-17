@@ -12,19 +12,7 @@ export const ProjectsContext = createContext<ProjectsContextType>(
 export function ProjectsProvider({ children }: { children: ReactNode }) {
   const [projects, projectsDispatch] = useReducer(ProjectsReducer, {
     defaultUser: 'dhomini-rabelo',
-    currentUser: {
-      login: 'dhomini-rabelo',
-      avatar_url: '',
-      html_url: '',
-      repos_url: '',
-      name: '',
-      company: null,
-      blog: null,
-      location: null,
-      bio: '',
-      public_repos: 0,
-      followers: 0,
-    },
+    currentUser: null,
     repos: [],
   })
 
