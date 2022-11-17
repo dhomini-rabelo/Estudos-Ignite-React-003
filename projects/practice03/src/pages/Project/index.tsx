@@ -74,7 +74,7 @@ export function Project() {
             <i className="fa-solid fa-arrow-up-right-from-square ml-2"></i>
           </a>
         </nav>
-        <div className="w-full my-5 text-center flex flex-col justify-center items-center text-center">
+        <div className="w-full my-5 text-center flex flex-col justify-center items-center">
           <h1 className="text-lg text-Gray-100">{projectName} ( README )</h1>
           <div className="mt-2 flex justify-content items-center gap-x-6 lh-160 text-Blue-500">
             <div className="icon-text flex gap-x-2 items-center">

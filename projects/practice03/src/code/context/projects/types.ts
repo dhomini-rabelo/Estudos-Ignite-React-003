@@ -9,7 +9,8 @@ export interface UserSettingsType {
 
 export interface ProjectsContextType extends UserSettingsType {
   actions: {
-    setRepositories: (repositories: RepositoryType[]) => void
+    setNewUser: (username: string) => void
     setUserData: (userData: UserDataType) => void
+    setRepositories: (repositories: RepositoryType[]) => void
   }
 }

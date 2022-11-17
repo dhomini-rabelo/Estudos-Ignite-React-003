@@ -28,13 +28,13 @@ export function UserReport({ user }: { user: UserDataType }) {
         </div>
         <p className="text-xs mt-1">
           {user.bio.split('\r\n').map((partialText, index, splitArray) =>
-            index + 1 !== splitArray.length ? (
+            index + 1 !== splitArray.length && partialText.trim() ? (
               <span key={index}>
-                {partialText}
+                {partialText.trim()}
                 <br />
               </span>
             ) : (
-              <span key={index}>{partialText}</span>
+              <span key={index}>{partialText.trim()}</span>
             ),
           )}
         </p>

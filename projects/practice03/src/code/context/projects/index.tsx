@@ -16,6 +16,10 @@ export function ProjectsProvider({ children }: { children: ReactNode }) {
     repos: [],
   })
 
+  const setNewUser = useCallback((username: string) => {
+    projectsDispatch(ProjectsConsumer.setNewUser(username))
+  }, [])
+
   const setUserData = useCallback((userData: UserDataType) => {
     projectsDispatch(ProjectsConsumer.setUser(userData))
   }, [])
@@ -26,7 +30,10 @@ export function ProjectsProvider({ children }: { children: ReactNode }) {
 
   return (
     <ProjectsContext.Provider
-      value={{ ...projects, actions: { setRepositories, setUserData } }}
+      value={{
+        ...projects,
+        actions: { setRepositories, setUserData, setNewUser },
+      }}
     >
       {children}
     </ProjectsContext.Provider>
