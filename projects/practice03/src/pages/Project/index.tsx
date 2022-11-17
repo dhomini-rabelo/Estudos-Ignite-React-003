@@ -11,7 +11,7 @@ import ReactDOMServer from 'react-dom/server'
 
 export function Project() {
   const { username, projectName, branch } = useParams()
-  const { currentUser, repos } = useContext(ProjectsContext)
+  const { defaultUser, repos } = useContext(ProjectsContext)
   const { isLoading, data, wasSuccess } = useExternalData<string>(
     `${username}/${projectName}/${branch}/README.md`,
     contentGithubClient,
@@ -20,7 +20,7 @@ export function Project() {
     (repo) => repo.full_name === `${username}/${projectName}`,
   )
 
-  if (username !== currentUser || !projectRepository) {
+  if (username !== defaultUser || !projectRepository) {
     return (
       <main className="py-8">
         <Div.header className="flex flex-col">
