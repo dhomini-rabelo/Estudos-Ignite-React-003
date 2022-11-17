@@ -1,15 +1,35 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { ProjectsContext } from '../../../../code/context/projects'
 import { RepositoryType } from '../../../../code/types/repository'
+import { mainGithubClient } from '../../../../core/settings'
 import { PostBox } from '../../../../layout/components/PostBox'
+import { useExternalData } from '../../../../layout/hooks/useExternalData'
 import { Div } from './styles'
 
-export function Projects({ userRepos }: { userRepos: RepositoryType[] }) {
+export function Projects() {
+  const {
+    defaultUser,
+    repos,
+    actions: { setRepositories },
+  } = useContext(ProjectsContext)
+  const request = useExternalData<RepositoryType[]>(
+    `users/${defaultUser}/repos`,
+    mainGithubClient,
+  )
   const [searchText, setSearchText] = useState('')
-  const filteredProjects = userRepos.filter(
+  const filteredProjects = repos.filter(
     (repo) =>
       repo.name.toLowerCase().includes(searchText.toLowerCase()) ||
       repo.description?.toLowerCase().includes(searchText.toLowerCase()),
   )
+
+  console.log('renderizando repos')
+
+  useEffect(() => {
+    if (request.wasSuccess === true) {
+      setRepositories(request.data!)
+    }
+  }, [request, setRepositories])
 
   function handleClearSearchText() {
     setSearchText('')
@@ -22,7 +42,7 @@ export function Projects({ userRepos }: { userRepos: RepositoryType[] }) {
           <strong className="text-lg text-Gray-200">Projetos</strong>
           <div className="flex items-center gap-x-2">
             <span className="text-sm text-Blue-500">
-              {userRepos.length} projetos
+              {repos.length} projetos
             </span>
             {searchText && (
               <span
@@ -44,7 +64,7 @@ export function Projects({ userRepos }: { userRepos: RepositoryType[] }) {
         />
       </Div.inputContainer>
       <div className="post-boxes mt-12 grid grid-cols-2 gap-x-8">
-        {userRepos.length > 0 ? (
+        {repos.length > 0 ? (
           filteredProjects.map((repo) => (
             <div className="col-span-1" key={repo.id}>
               <PostBox repository={repo} />
