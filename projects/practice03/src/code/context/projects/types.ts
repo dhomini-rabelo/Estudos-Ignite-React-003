@@ -2,8 +2,8 @@ import { RepositoryType } from '../../types/repository'
 import { UserDataType } from '../../types/user'
 
 export interface UserSettingsType {
-  defaultUser: string
-  currentUser: UserDataType | null
+  username: string
+  user: UserDataType | null
   repos: RepositoryType[]
 }
 

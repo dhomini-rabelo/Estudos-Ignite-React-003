@@ -10,17 +10,17 @@ import ReactMarkdown from 'react-markdown'
 import ReactDOMServer from 'react-dom/server'
 
 export function Project() {
-  const { username, projectName, branch } = useParams()
-  const { defaultUser, repos } = useContext(ProjectsContext)
+  const { githubUsername, projectName, branch } = useParams()
+  const { username, repos } = useContext(ProjectsContext)
   const { isLoading, data, wasSuccess } = useExternalData<string>(
-    `${username}/${projectName}/${branch}/README.md`,
+    `${githubUsername}/${projectName}/${branch}/README.md`,
     contentGithubClient,
   )
   const projectRepository = repos.find(
-    (repo) => repo.full_name === `${username}/${projectName}`,
+    (repo) => repo.full_name === `${githubUsername}/${projectName}`,
   )
 
-  if (username !== defaultUser || !projectRepository) {
+  if (githubUsername !== username || !projectRepository) {
     return (
       <main className="py-8">
         <Div.header className="flex flex-col">
@@ -49,11 +49,11 @@ export function Project() {
     .replaceAll('&quot;', '"')
     .replaceAll(
       'src=".',
-      `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
+      `src="https://raw.githubusercontent.com/${githubUsername}/${projectName}/${branch}`,
     )
     .replaceAll(
       '](.',
-      `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
+      `src="https://raw.githubusercontent.com/${githubUsername}/${projectName}/${branch}`,
     )
 
   return !isLoading ? (
@@ -68,7 +68,7 @@ export function Project() {
             className="github-link"
             target="_blank"
             rel="noreferrer"
-            href={`https://github.com/${username}/${projectName}`}
+            href={`https://github.com/${githubUsername}/${projectName}`}
           >
             VER NO GITHUB
             <i className="fa-solid fa-arrow-up-right-from-square ml-2"></i>
@@ -79,7 +79,7 @@ export function Project() {
           <div className="mt-2 flex justify-content items-center gap-x-6 lh-160 text-Blue-500">
             <div className="icon-text flex gap-x-2 items-center">
               <i className="fa-brands fa-github"></i>
-              <span>{username}</span>
+              <span>{githubUsername}</span>
             </div>
             <div className="icon-text flex gap-x-2 items-center">
               <i

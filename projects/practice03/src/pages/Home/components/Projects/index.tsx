@@ -9,19 +9,19 @@ import { Div } from './styles'
 
 export function Projects() {
   const {
-    defaultUser,
-    currentUser,
+    username,
+    user,
     repos,
     actions: { setRepositories },
   } = useContext(ProjectsContext)
   const request = useExternalData<RepositoryType[]>(
-    `users/${defaultUser}/repos`,
+    `users/${username}/repos`,
     mainGithubClient,
     repos.length === 0,
   )
   const [searchText, setSearchText] = useState('')
   const loadingNewRepos =
-    request.wasSuccess && currentUser!.public_repos > 0 && repos.length === 0
+    request.wasSuccess && user!.public_repos > 0 && repos.length === 0
   const filteredProjects = repos.filter(
     (repo) =>
       repo.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -48,7 +48,7 @@ export function Projects() {
           <strong className="text-lg text-Gray-200">Projetos</strong>
           <div className="flex items-center gap-x-2">
             <span className="text-sm text-Blue-500">
-              {repos.length} projetos
+              {filteredProjects.length} projetos
             </span>
             {searchText && (
               <span

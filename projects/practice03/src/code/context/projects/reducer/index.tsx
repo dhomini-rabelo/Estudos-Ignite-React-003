@@ -10,7 +10,7 @@ export function ProjectsReducer(
     case ProjectsActions.SET_USER:
       return {
         ...state,
-        currentUser: action.payload,
+        user: action.payload,
       }
     case ProjectsActions.SET_REPOS:
       return {

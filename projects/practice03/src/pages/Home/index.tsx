@@ -9,16 +9,16 @@ import { Projects } from './components/Projects'
 
 export function Home() {
   const {
-    currentUser,
-    defaultUser,
+    user,
+    username,
     actions: { setUserData },
   } = useContext(ProjectsContext)
   const request = useExternalData<UserDataType>(
-    `users/${defaultUser}`,
+    `users/${username}`,
     mainGithubClient,
-    !currentUser,
+    !user,
   )
-  const userIsLoading = request.wasSuccess === true && !currentUser
+  const userIsLoading = request.wasSuccess === true && !user
 
   useEffect(() => {
     if (userIsLoading) {
@@ -32,7 +32,7 @@ export function Home() {
 
   return request.wasSuccess ? (
     <main>
-      <UserReport user={currentUser!} />
+      <UserReport user={user!} />
       <Projects />
     </main>
   ) : (
