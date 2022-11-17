@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ProjectsContext } from '../../../../code/context/projects'
 import { RepositoryType } from '../../../../code/types/repository'
 import { mainGithubClient } from '../../../../core/settings'
+import { Loading } from '../../../../layout/components/Loading'
 import { PostBox } from '../../../../layout/components/PostBox'
 import { useExternalData } from '../../../../layout/hooks/useExternalData'
 import { Div } from './styles'
@@ -9,30 +10,35 @@ import { Div } from './styles'
 export function Projects() {
   const {
     defaultUser,
+    currentUser,
     repos,
     actions: { setRepositories },
   } = useContext(ProjectsContext)
   const request = useExternalData<RepositoryType[]>(
     `users/${defaultUser}/repos`,
     mainGithubClient,
+    repos.length === 0,
   )
   const [searchText, setSearchText] = useState('')
+  const loadingNewRepos =
+    request.wasSuccess && currentUser!.public_repos > 0 && repos.length === 0
   const filteredProjects = repos.filter(
     (repo) =>
       repo.name.toLowerCase().includes(searchText.toLowerCase()) ||
       repo.description?.toLowerCase().includes(searchText.toLowerCase()),
   )
 
-  console.log('renderizando repos')
-
   useEffect(() => {
-    if (request.wasSuccess === true) {
+    if (loadingNewRepos) {
       setRepositories(request.data!)
     }
-  }, [request, setRepositories])
+  }, [request, setRepositories, loadingNewRepos])
 
   function handleClearSearchText() {
     setSearchText('')
+  }
+  if (request.isLoading || loadingNewRepos) {
+    return <Loading />
   }
 
   return (

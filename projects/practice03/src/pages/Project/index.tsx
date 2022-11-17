@@ -51,6 +51,10 @@ export function Project() {
       'src=".',
       `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
     )
+    .replaceAll(
+      '](.',
+      `src="https://raw.githubusercontent.com/${username}/${projectName}/${branch}`,
+    )
 
   return !isLoading ? (
     <main className="pt-8 pb-24">

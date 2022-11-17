@@ -16,21 +16,23 @@ export function Home() {
   const request = useExternalData<UserDataType>(
     `users/${defaultUser}`,
     mainGithubClient,
+    !currentUser,
   )
+  const userIsLoading = request.wasSuccess === true && !currentUser
 
   useEffect(() => {
-    if (request.wasSuccess === true) {
+    if (userIsLoading) {
       setUserData(request.data!)
     }
-  }, [request, setUserData])
+  }, [request, setUserData, userIsLoading])
 
-  if (request.isLoading) {
+  if (request.isLoading || userIsLoading) {
     return <Loading />
   }
 
   return request.wasSuccess ? (
     <main>
-      <UserReport user={currentUser} />
+      <UserReport user={currentUser!} />
       <Projects />
     </main>
   ) : (
