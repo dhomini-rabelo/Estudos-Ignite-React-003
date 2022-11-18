@@ -20,6 +20,8 @@ export const Div = {
   content: styled.div`
     * {
       all: revert;
+      max-width: 100% !important;
+      overflow: auto;
     }
 
     img {

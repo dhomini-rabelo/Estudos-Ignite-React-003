@@ -3,15 +3,15 @@ import { Div } from './styles'
 
 export function UserReport({ user }: { user: UserDataType }) {
   return (
-    <Div.container className="flex p-8 gap-x-8">
-      <div className="profile-image w-40">
+    <Div.container className="flex p-8 gap-x-8 gap-y-4 flex-wrap sm:flex-nowrap">
+      <div className="profile-image w-40 grow">
         <img
           src={user.avatar_url}
           alt="github-profile-image"
-          className="h-36 w-40"
+          className="h-36 w-40 mx-auto"
         />
       </div>
-      <div className="profile-content flex flex-col pt-2 w-full">
+      <div className="profile-content flex flex-col pt-2 grow">
         <div className="flex justify-between text-Blue-300 items-start">
           <h1 className="text-Gray-100 text-2xl font-bold lh-130">
             {user.name}

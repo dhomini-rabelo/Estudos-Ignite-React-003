@@ -57,7 +57,7 @@ export function Project() {
     )
 
   return !isLoading ? (
-    <main className="pt-8 pb-24">
+    <main className="pt-8 pb-24 px-4">
       <Div.header className="flex flex-col">
         <nav className="flex items-center justify-between text-Blue-300 w-full">
           <Link to="/" className="lh-160">
@@ -76,7 +76,7 @@ export function Project() {
         </nav>
         <div className="w-full my-5 text-center flex flex-col justify-center items-center">
           <h1 className="text-lg text-Gray-100">{projectName} ( README )</h1>
-          <div className="mt-2 flex justify-content items-center gap-x-6 lh-160 text-Blue-500">
+          <div className="mt-2 flex justify-content items-center gap-x-6 lh-160 text-Blue-500 flex-wrap">
             <div className="icon-text flex gap-x-2 items-center">
               <i className="fa-brands fa-github"></i>
               <span>{githubUsername}</span>

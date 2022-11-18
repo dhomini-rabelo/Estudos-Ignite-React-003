@@ -43,7 +43,7 @@ export function Projects() {
 
   return (
     <>
-      <Div.inputContainer className="input-container">
+      <Div.inputContainer className="input-container px-8">
         <div className="flex items-center justify-between mt-10 lh-160">
           <strong className="text-lg text-Gray-200">Projetos</strong>
           <div className="flex items-center gap-x-2">
@@ -72,7 +72,7 @@ export function Projects() {
       <div className="post-boxes mt-12 grid grid-cols-2 gap-x-8">
         {repos.length > 0 ? (
           filteredProjects.map((repo) => (
-            <div className="col-span-1" key={repo.id}>
+            <div className="col-span-2 sm:col-span-1" key={repo.id}>
               <PostBox repository={repo} />
             </div>
           ))
