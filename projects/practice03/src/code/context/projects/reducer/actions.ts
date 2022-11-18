@@ -12,7 +12,7 @@ export enum ProjectsActions {
 export const ProjectsConsumer = {
   setNewUser(username: string) {
     return {
-      type: ProjectsActions.SET_USER,
+      type: ProjectsActions.SET_NEW_USER,
       payload: username,
     }
   },

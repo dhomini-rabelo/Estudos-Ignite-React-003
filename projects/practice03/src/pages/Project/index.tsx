@@ -25,7 +25,7 @@ export function Project() {
       <main className="py-8">
         <Div.header className="flex flex-col">
           <nav className="flex items-center justify-between text-Blue-300 w-full">
-            <Link to="/" className="lh-160">
+            <Link to={`/?username=${username}`} className="lh-160">
               <i className="fa-solid fa-chevron-left mr-2"></i>
               <span>VOLTAR</span>
             </Link>
