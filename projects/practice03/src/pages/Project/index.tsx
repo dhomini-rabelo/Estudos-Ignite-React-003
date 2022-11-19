@@ -1,26 +1,34 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { contentGithubClient } from '../../core/settings'
 import { Loading } from '../../layout/components/Loading'
 import { useExternalData } from '../../layout/hooks/useExternalData'
 import { Markup } from 'interweave'
 import { Div } from './styles'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProjectsContext } from '../../code/context/projects'
 import ReactMarkdown from 'react-markdown'
 import ReactDOMServer from 'react-dom/server'
 
 export function Project() {
   const { githubUsername, projectName, branch } = useParams()
-  const { username, repos } = useContext(ProjectsContext)
+  const { username, repos, user } = useContext(ProjectsContext)
   const { isLoading, data, wasSuccess } = useExternalData<string>(
     `${githubUsername}/${projectName}/${branch}/README.md`,
     contentGithubClient,
+    githubUsername === username && !!user,
   )
+  const navigateTo = useNavigate()
   const projectRepository = repos.find(
     (repo) => repo.full_name === `${githubUsername}/${projectName}`,
   )
 
-  if (githubUsername !== username || !projectRepository) {
+  useEffect(() => {
+    if (githubUsername !== username || !user) {
+      navigateTo(`/?username=${githubUsername}`)
+    }
+  }, [githubUsername, username, navigateTo, user])
+
+  if (!projectRepository) {
     return (
       <main className="py-8">
         <Div.header className="flex flex-col">
@@ -47,6 +55,10 @@ export function Project() {
     .replaceAll('&lt;', '<')
     .replaceAll('&gt;', '>')
     .replaceAll('&quot;', '"')
+    .replaceAll('&#x27;', "'")
+    .replaceAll("src='.", 'src=".')
+    .replaceAll("'>", '">')
+    .replaceAll("' >", '">')
     .replaceAll(
       'src=".',
       `src="https://raw.githubusercontent.com/${githubUsername}/${projectName}/${branch}`,
@@ -82,15 +94,19 @@ export function Project() {
               <span>{githubUsername}</span>
             </div>
             <div className="icon-text flex gap-x-2 items-center">
-              <i
-                className={`devicon-${projectRepository.language.toLowerCase()}-plain text-Blue-500`}
-              ></i>
-              <span>{projectRepository.language}</span>
+              {projectRepository!.language && (
+                <>
+                  <i
+                    className={`devicon-${projectRepository!.language.toLowerCase()}-plain text-Blue-500`}
+                  ></i>
+                  <span>{projectRepository!.language}</span>
+                </>
+              )}
             </div>
             <div className="icon-text flex gap-x-2 items-center">
               <i className="fa-solid fa-calendar"></i>
               <span>
-                {new Date(projectRepository.created_at).toLocaleDateString()}
+                {new Date(projectRepository!.created_at).toLocaleDateString()}
               </span>
             </div>
           </div>
