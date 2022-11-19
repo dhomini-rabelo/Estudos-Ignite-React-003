@@ -22,10 +22,10 @@ export function Projects() {
   const [searchText, setSearchText] = useState('')
   const loadingNewRepos =
     request.wasSuccess && user!.public_repos > 0 && repos.length === 0
-  const filteredProjects = repos.filter(
-    (repo) =>
-      repo.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      repo.description?.toLowerCase().includes(searchText.toLowerCase()),
+  const filteredProjects = repos.filter((repo) =>
+    (repo.name + (repo.description || '') + (repo.language || ''))
+      .toLowerCase()
+      .includes(searchText.toLowerCase()),
   )
 
   useEffect(() => {
