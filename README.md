@@ -19,7 +19,7 @@
 <img src="./readme/dt_money.gif" alt="course-project-gif" />
 
 <p>
-    Este é um projeto simples de gerenciamento de finanças, onde você consegue cadastrar seus gastos e 
+    Este é um projeto simples para gerenciamento de finanças, onde você consegue cadastrar seus gastos e 
     ganhos, visualizá-los, filtrá-los e ver um resumo. O principal objetivo deste projeto é a prática utilizando uma API 
     para construir as telas, e também analisar o impacto de rerenderizações em uma aplicação React(causadas por API ou não), 
     durante este módulo foi apresentado o conceito de useContextSelector, Memo, useMemo e useCallback.
@@ -120,10 +120,16 @@ criei uma feature para trocar o usuário padrão apenas trocando uma variável n
 <li style="margin-top: 30px;">
 <h3>Erros</h3>
 <p>
-Retorno quando ocorre erros nas requisições.
+Retorno quando ocorre erro nas requisições.
 </p>
 <br>
 <kbd><img src="./readme/practice/invalid_data.gif" alt="project-image"></kbd>
+</li>
+
+<li style="margin-top: 30px;">
+<h3>Telas no mobile</h3>
+<br>
+<kbd><img src="./readme/practice/mobile.gif" alt="project-image"></kbd>
 </li>
 
 </ul>
