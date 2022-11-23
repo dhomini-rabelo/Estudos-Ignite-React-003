@@ -5,11 +5,12 @@ import { Button, Div } from './styles'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { newTransactionSchema, newTransactionSchemaType } from './schemas'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { TransactionsContext } from '../../../../../../code/contexts/Transactions'
 
 export function NewTransactionModal() {
   const { createTransaction } = useContext(TransactionsContext)
+  const closeButtonRef = useRef<null | HTMLButtonElement>(null)
   const {
     control,
     register,
@@ -23,8 +24,13 @@ export function NewTransactionModal() {
     },
   })
 
+  function closeModal() {
+    closeButtonRef.current!.click()
+  }
+
   async function handleRegisterNewTransaction(data: newTransactionSchemaType) {
     await createTransaction(data)
+    closeModal()
     reset()
   }
 
@@ -36,6 +42,7 @@ export function NewTransactionModal() {
         <Dialog.Close asChild>
           <button
             type="button"
+            ref={closeButtonRef}
             className="bg-transparent border-0 absolute top-6 right-6 cursor-pointer text-Gray-500"
           >
             <X size={24} className="hover:text-Gray-100" />
