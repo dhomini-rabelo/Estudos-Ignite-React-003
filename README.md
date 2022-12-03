@@ -108,16 +108,6 @@ criei uma feature para trocar o usuário padrão apenas trocando uma variável n
 </li>
 
 <li style="margin-top: 30px;">
-<h3>Trocar usuário padrão</h3>
-<p>
-Como os dados são buscados numa API externa de acordo com o username do usuário,
-criei uma feature para trocar o usuário padrão apenas trocando uma variável na url.
-</p>
-<br>
-<kbd><img src="./readme/practice/change_user.gif" alt="project-image"></kbd>
-</li>
-
-<li style="margin-top: 30px;">
 <h3>Erros</h3>
 <p>
 Retorno quando ocorre erro nas requisições.
