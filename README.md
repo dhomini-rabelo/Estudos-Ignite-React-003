@@ -6,7 +6,7 @@
 
 <li><a href="#course">Projeto feito durante as aulas</a></li> 
 <li><a href="#course-individual">Projeto do curso feito individualmente</a></li> 
-<!-- <li><a href="#external-project">Projeto externo feito individualmente</a></li>  -->
+<li><a href="#external-project">Projeto externo feito individualmente</a></li> 
 
 </ul>
 
@@ -35,6 +35,7 @@
     <li>radix</li>
     <li>axios</li>
     <li>zod</li>
+    <li>react-hook-form</li>
 </ul>
 
 <br>
@@ -127,5 +128,5 @@ Retorno quando ocorre erro nas requisições.
 
 <br>
 <br>
-<!-- <h2 id="external-project">Projeto externo feito individualmente, para praticar ainda mais os conceitos</h2>
-<p><strong>Link:</strong> <a href="https://github.com/dhomini-rabelo/chat">https://github.com/dhomini-rabelo/chat</a></p> -->
+<h2 id="external-project">Projeto externo feito individualmente, para praticar ainda mais os conceitos</h2>
+<p><strong>Link:</strong> <a href="https://github.com/dhomini-rabelo/chat">https://github.com/dhomini-rabelo/chat</a></p>
