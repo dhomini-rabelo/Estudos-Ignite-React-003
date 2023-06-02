@@ -129,4 +129,4 @@ Retorno quando ocorre erro nas requisições.
 <br>
 <br>
 <h2 id="external-project">Projeto externo feito individualmente, para praticar ainda mais os conceitos</h2>
-<p><strong>Link:</strong> <a href="https://github.com/dhomini-rabelo/Estudos-Ignite-React-003">https://github.com/dhomini-rabelo/Estudos-Ignite-React-003</a></p>
+<p><strong>Link:</strong> <a href="https://github.com/dhomini-rabelo/Coin-Frontend">https://github.com/dhomini-rabelo/Coin-Frontend</a></p>
